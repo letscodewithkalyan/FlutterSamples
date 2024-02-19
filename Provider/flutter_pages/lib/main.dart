@@ -4,6 +4,7 @@ import 'package:flutter_pages/pages/login_page.dart';
 import 'package:flutter_pages/pages/register.dart';
 import 'package:flutter_pages/providers/auth_provider.dart';
 import 'package:flutter_pages/utils/user_preferences.dart';
+import 'package:flutter_pages/widgets/loading_overlay.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -21,7 +22,8 @@ class MainApp extends StatelessWidget {
       providers: [ChangeNotifierProvider(create: (_) => AuthProvider())],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: FutureBuilder(
+        home: LoadingOverlayWidget(
+            child: FutureBuilder(
           future: getUserData(),
           builder: (context, snapshot) {
             switch (snapshot.connectionState) {
@@ -38,7 +40,7 @@ class MainApp extends StatelessWidget {
                 }
             }
           },
-        ),
+        )),
         routes: {
           '/dashboard': (context) => DashBoardPage(),
           '/login': (context) => LoginPage(),

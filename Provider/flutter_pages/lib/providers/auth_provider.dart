@@ -25,20 +25,29 @@ class AuthProvider extends ChangeNotifier {
     _loggenInStatus = AuthStatus.Authenticating;
     notifyListeners();
 
-    var response = await post(Uri.parse(AppUrl.Login),
-        body: json.encode(loginData),
-        headers: {'Content-Type': 'application/json'});
+    try {
+      var response = await post(Uri.parse(AppUrl.Login),
+          body: json.encode(loginData),
+          headers: {'Content-Type': 'application/json'});
 
-    if (response.statusCode == 200) {
-      var responseData = json.decode(response.body);
-      var user = UserEntity.fromJson(responseData['data']);
-      _loggenInStatus = AuthStatus.LoggedIn;
-      notifyListeners();
-      return {'status': true, 'message': 'Success', 'user': user};
-    } else {
+      if (response.statusCode == 200) {
+        var responseData = json.decode(response.body);
+        var user = UserEntity.fromJson(responseData['data']);
+        _loggenInStatus = AuthStatus.LoggedIn;
+        notifyListeners();
+        return {'status': true, 'message': 'Success', 'user': user};
+      } else {
+        _loggenInStatus = AuthStatus.NotLoggedIn;
+        notifyListeners();
+        return {
+          'status': false,
+          'message': json.decode(response.body)['error']
+        };
+      }
+    } catch (error) {
       _loggenInStatus = AuthStatus.NotLoggedIn;
       notifyListeners();
-      return {'status': false, 'message': json.decode(response.body)['error']};
+      return {'status': false, 'message': error.toString()};
     }
   }
 }

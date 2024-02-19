@@ -12,8 +12,8 @@ class UserEntity extends BaseModel {
 
   factory UserEntity.fromJson(Map<String, dynamic> responseData) {
     return UserEntity(
-        responseData['name'],
-        responseData['access_token'],
+        responseData['name'] ?? "",
+        responseData['access_token'] ?? "",
         responseData['email'],
         responseData['renewal_token'],
         responseData['type'],
