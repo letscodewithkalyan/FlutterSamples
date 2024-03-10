@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:music_player/flutter_web.dart';
 import 'package:music_player/navigator_key.dart';
 import 'package:music_player/viewmodels/musiclist_viewmodel.dart';
+import 'package:music_player/views/home_view.dart';
 import 'package:music_player/views/musiclist_view.dart';
 import 'package:music_player/views/widgets/loading_overlay.dart';
 import 'package:provider/provider.dart';
@@ -18,13 +20,16 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [ChangeNotifierProvider(create: (_) => MusicListViewModel())],
       child: MaterialApp(
-          navigatorKey: navigatorKey,
-          title: 'Flutter Demo',
-          theme: ThemeData(
-            colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-            useMaterial3: true,
-          ),
-          home: LoadingOverlay(child: MusicListView())),
+        debugShowCheckedModeBanner: false,
+        navigatorKey: navigatorKey,
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+          useMaterial3: true,
+        ),
+        //home: LoadingOverlay(child: MusicListView()),
+        home: LoadingOverlay(child: HomeView(currentIndex: 0)),
+      ),
     );
   }
 }
