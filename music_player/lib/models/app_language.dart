@@ -1,16 +1,10 @@
 import 'package:flag/flag.dart';
-import 'package:flutter/material.dart';
 
-class AppLanuage extends ChangeNotifier {
+class AppLanuage {
   bool isSelected = false;
   String languageName;
   String languageCode;
   FlagsCode flagsCode;
-
-  void setIsSelected(bool isSelected) {
-    isSelected = isSelected;
-    notifyListeners();
-  }
 
   AppLanuage(
       {required this.languageName,

@@ -4,5 +4,7 @@
     "email": "Email",
     "enter_email": "Enter Email",
     "password": "Password",
-    "enter_password": "Enter Password"
+    "enter_password": "Enter Password",
+    "not_registered": "Si vous n'êtes pas enregistré",
+    "please_register": "Veuillez vous inscrire"
 }

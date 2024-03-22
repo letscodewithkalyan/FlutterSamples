@@ -1,0 +1,9 @@
+ {
+    "login": "Connexion",
+    "email": "E-mail",
+    "enter_email": "Entrer l'e-mail",
+    "password": "Mot de passe",
+    "enter_password": "Entrer le mot de passe",
+    "not_registered": "Si vous n'êtes pas enregistré",
+    "please_register": "Veuillez vous inscrire"
+ }

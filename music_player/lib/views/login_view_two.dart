@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:http/http.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class LoginViewTwo extends StatefulWidget {
@@ -40,9 +39,9 @@ class _LoginViewTwoState extends State<LoginViewTwo> {
             },
             obscureText: isVisiblePassword,
             decoration: InputDecoration(
-              border: OutlineInputBorder(),
-              labelText: "Password",
-              hintText: "Enter Password",
+              border: const OutlineInputBorder(),
+              labelText: AppLocalizations.of(context)!.password,
+              hintText: AppLocalizations.of(context)!.enter_password,
               suffixIcon: IconButton(
                 onPressed: () {
                   setState(() {
@@ -64,17 +63,20 @@ class _LoginViewTwoState extends State<LoginViewTwo> {
             style: ElevatedButton.styleFrom(
               minimumSize: const Size.fromHeight(40),
             ),
-            child: const Text("Login"),
+            child: Text(AppLocalizations.of(context)!.login),
           ),
           const Spacer(),
           RichText(
-            text: const TextSpan(
-                style: TextStyle(color: Colors.grey, fontSize: 16.0),
+            textAlign: TextAlign.center,
+            text: TextSpan(
+                style: const TextStyle(color: Colors.grey, fontSize: 16.0),
                 children: [
-                  TextSpan(text: "If not registered"),
+                  TextSpan(text: AppLocalizations.of(context)!.not_registered),
+                  const TextSpan(text: "  "),
                   TextSpan(
-                      text: " Please Register",
-                      style: TextStyle(color: Colors.blue, fontSize: 16.0)),
+                      text: AppLocalizations.of(context)!.please_register,
+                      style:
+                          const TextStyle(color: Colors.blue, fontSize: 16.0)),
                 ]),
           )
         ]),

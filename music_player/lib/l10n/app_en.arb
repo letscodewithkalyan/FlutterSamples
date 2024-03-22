@@ -1,11 +1,10 @@
 {
-  "helloWorld": "Hello World!",
-  "@helloWorld": {
-    "description": "The conventional newborn programmer greeting"
-  },
-  "login": "Login",
-  "email": "Email",
-  "enter_email": "Enter Email",
-  "password": "Password",
-  "enter_password": "Enter Password"
+    "helloWorld": "¡Hola Mundo!",
+    "login": "Login",
+    "email": "Email",
+    "enter_email": "Enter Email",
+    "password": "Password",
+    "enter_password": "Enter Password",
+    "not_registered": "If not registered",
+    "please_register": "Please Register"
 }

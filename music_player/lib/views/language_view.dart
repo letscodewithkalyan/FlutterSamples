@@ -1,6 +1,12 @@
 import 'package:flag/flag_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:music_player/constants.dart';
+import 'package:music_player/datasources/user_preferences.dart';
 import 'package:music_player/models/app_language.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:provider/provider.dart';
+
+import '../providers/app_locale_provider.dart';
 
 class LanguageView extends StatefulWidget {
   const LanguageView({super.key});
@@ -10,7 +16,15 @@ class LanguageView extends StatefulWidget {
 }
 
 class _LanguageViewState extends State<LanguageView> {
+  AppLocaleProvider? _appLocale;
   int tappedIndex = -1;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _appLocale = Provider.of<AppLocaleProvider>(context);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,7 +37,6 @@ class _LanguageViewState extends State<LanguageView> {
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: ListView.separated(
-                physics: BouncingScrollPhysics(),
                 separatorBuilder: (context, index) => const SizedBox(
                   height: 10,
                 ),
@@ -59,8 +72,16 @@ class _LanguageViewState extends State<LanguageView> {
             ),
           ),
           ElevatedButton(
-              onPressed: () {
-                Navigator.pushNamed(context, "/login");
+              onPressed: () async {
+                if (tappedIndex > -1) {
+                  final selectedLaguage =
+                      AppLanuage.getSupportedLanguages()[tappedIndex];
+                  await UserPreferences().saveString(
+                      Constants.LANGUAGE_KEY, selectedLaguage.languageCode);
+                  _appLocale!
+                      .changeLocale(Locale(selectedLaguage.languageCode));
+                  await Navigator.pushNamed(context, "/login");
+                }
               },
               style: ElevatedButton.styleFrom(
                 minimumSize: const Size.fromHeight(40),
