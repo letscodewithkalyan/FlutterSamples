@@ -59,7 +59,9 @@ class _LoginViewTwoState extends State<LoginViewTwo> {
             height: 10,
           ),
           ElevatedButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context).pushNamed("/home");
+            },
             style: ElevatedButton.styleFrom(
               minimumSize: const Size.fromHeight(40),
             ),
