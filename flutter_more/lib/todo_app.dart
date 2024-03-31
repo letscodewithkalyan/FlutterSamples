@@ -1,16 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_more/views/home_view.dart';
+import 'package:flutter_more/views/tab_view.dart';
+import 'package:get/get.dart';
 
 class TodoApp extends StatelessWidget {
   const TodoApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: Scaffold(
-        body: Center(
-          child: Text('Hello World!'),
-        ),
-      ),
-    );
+    return GetMaterialApp(home: MoreTabView());
   }
 }
