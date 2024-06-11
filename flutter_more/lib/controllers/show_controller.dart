@@ -12,6 +12,18 @@ class ShowController extends GetxController {
     super.onInit();
   }
 
+  @override
+  void onReady() {
+    // TODO: implement onReady
+    super.onReady();
+  }
+
+  @override
+  void onClose() {
+    // TODO: implement onClose
+    super.onClose();
+  }
+
   Future loadShows() async {
     try {
       isLoading(true);

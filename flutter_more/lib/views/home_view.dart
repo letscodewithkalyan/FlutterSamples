@@ -17,7 +17,7 @@ class HomeView extends StatelessWidget {
           }
           return GridView.builder(
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2),
+                  crossAxisCount: 3),
               itemCount: showsList.length,
               itemBuilder: (context, index) {
                 return Card(
@@ -25,7 +25,10 @@ class HomeView extends StatelessWidget {
                     borderRadius: BorderRadius.circular(4),
                   ),
                   child: Stack(children: [
-                    Image.network(showsList[index].mediumImage),
+                    Image.network(
+                      showsList[index].mediumImage,
+                      fit: BoxFit.fitWidth,
+                    ),
                   ]),
                 );
               });

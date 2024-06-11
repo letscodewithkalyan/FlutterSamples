@@ -10,5 +10,6 @@ class Show {
     name = showDto.name ?? "";
     language = showDto.language ?? "";
     mediumImage = showDto.image?.medium ?? "";
+    originalImage = showDto.image?.original ?? "";
   }
 }
