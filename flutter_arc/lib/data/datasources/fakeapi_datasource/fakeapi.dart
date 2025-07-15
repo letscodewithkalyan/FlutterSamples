@@ -1,6 +1,7 @@
 import 'package:flutter_arc/core/api_constants.dart';
 import 'package:flutter_arc/data/datasources/api_service.dart';
 import 'package:flutter_arc/data/models/address_model.dart';
+import 'package:flutter_arc/data/models/image_model.dart';
 import 'package:flutter_arc/data/models/user_model.dart';
 
 class FakeApi {
@@ -24,5 +25,18 @@ class FakeApi {
         .map((json) => AddressModel.fromJson(json))
         .toList();
     return addresses;
+  }
+
+  Future<List<ImageModel>> getImages() async {
+    var response = await ApiService().getData<dynamic>(
+      ApiConstants.imagesEndPoint,
+    );
+
+    final List<dynamic> dataList = response.data["data"];
+    final List<ImageModel> images = dataList
+        .map((json) => ImageModel.fromJson(json))
+        .toList();
+
+    return images;
   }
 }

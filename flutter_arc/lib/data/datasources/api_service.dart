@@ -3,13 +3,13 @@ import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:flutter_arc/core/api_constants.dart';
 import 'package:flutter_arc/data/datasources/api_response.dart';
+import 'package:flutter_arc/data/datasources/dio_service.dart';
 
 class ApiService {
   Future<APIResponse<T>> getData<T>(String endpoint) async {
     try {
-      final dio = Dio();
       final url = '${ApiConstants.baseURL}/$endpoint';
-      final response = await dio.get(url);
+      final response = await DioService().dio.get(url);
       if (response.statusCode == 200) {
         return APIResponse<T>(data: response.data);
       } else {

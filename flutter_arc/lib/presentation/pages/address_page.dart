@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_arc/presentation/providers/address_provider.dart';
 import 'package:flutter_arc/presentation/widgets/address_card.dart';
-import 'package:flutter_arc/presentation/widgets/loading_overlay.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class AddressPage extends ConsumerWidget {
@@ -12,7 +11,7 @@ class AddressPage extends ConsumerWidget {
     final addressAsync = ref.watch(addressProvider);
 
     return Scaffold(
-      appBar: AppBar(title: const Text("Users")),
+      appBar: AppBar(title: const Text("Address")),
       body: Stack(
         children: [
           addressAsync.when(
@@ -22,10 +21,13 @@ class AddressPage extends ConsumerWidget {
                   AddressCard(address: users[index]),
             ),
             loading: () {
-              ref.read(loadingProvider.notifier).state = true;
+              // ref.read(loadingProvider.notifier).state = true;
               return const SizedBox();
             }, // render nothing underneath
-            error: (err, _) => Center(child: Text('Error: $err')),
+            error: (err, _) {
+              debugPrint("AddressProvider error: $err");
+              return Center(child: Text('Error: $err'));
+            },
           ),
         ],
       ),

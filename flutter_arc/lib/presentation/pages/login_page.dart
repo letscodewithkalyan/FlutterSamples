@@ -17,7 +17,7 @@ class _LoginState extends State<Login> {
       final username = _usernameController.text.trim();
       final password = _passwordController.text;
       if (username == "test" && password == "1234") {
-        Navigator.pushNamed(context, '/address');
+        Navigator.pushNamed(context, '/image');
       }
     }
   }
